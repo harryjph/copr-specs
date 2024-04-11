@@ -22,7 +22,7 @@ Since 2018, OpenOCD also offers the basic functionality, and also has support fo
 strip stm8flash
 
 %install
-install -m 0755 stm8flash -D %{buildroot}/%{_bindir}/stm8flash
+install -m 0755 stm8flash -D %{buildroot}%{_bindir}/stm8flash
 
 %files
 %doc README.md
