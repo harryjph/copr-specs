@@ -1,5 +1,5 @@
 Name: jetbrains-mono-nerd-fonts
-Version: 3.2.0
+Version: 3.4.0
 Release: %autorelease
 Summary: The NerdFonts version of the JetBrains Mono font
 License: OFL-1.1
