@@ -5,7 +5,8 @@ Summary:        Headless terminal runtime and background server for AI coding ag
 License:        Apache-2.0
 URL:            https://github.com/herdrdev/herdr-core
 ExclusiveArch:  x86_64 aarch64
-Source0:        https://releases.herdr.dev/core/%{version}/herdr-core-linux-%{_arch}.tar.gz
+Source0:        https://releases.herdr.dev/core/%{version}/herdr-core-linux-x86_64.tar.gz
+Source1:        https://releases.herdr.dev/core/%{version}/herdr-core-linux-aarch64.tar.gz
 
 %global debug_package %{nil}
 
@@ -16,7 +17,13 @@ stay alive across client disconnects, app restarts, and SSH drops, and supports
 agent-to-agent spawning and communication.
 
 %prep
-%setup -q -c
+%setup -q -c -T
+%ifarch x86_64
+tar -xzf %{SOURCE0}
+%endif
+%ifarch aarch64
+tar -xzf %{SOURCE1}
+%endif
 
 %install
 install -D -m 0755 herdr-core %{buildroot}%{_bindir}/herdr-core

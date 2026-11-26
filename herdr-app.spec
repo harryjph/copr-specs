@@ -5,7 +5,8 @@ Summary:        Native desktop workspace for terminals and coding agents
 License:        Apache-2.0
 URL:            https://github.com/herdrdev/herdr-app
 ExclusiveArch:  x86_64 aarch64
-Source0:        https://releases.herdr.dev/app/%{version}/herdr-app-linux-%{_arch}.tar.gz
+Source0:        https://releases.herdr.dev/app/%{version}/herdr-app-linux-x86_64.tar.gz
+Source1:        https://releases.herdr.dev/app/%{version}/herdr-app-linux-aarch64.tar.gz
 
 BuildRequires:  desktop-file-utils
 Requires:       herdr-core >= 0.1.11
@@ -24,7 +25,13 @@ herdr-core so terminal sessions and background agents keep running even when
 the desktop window is closed.
 
 %prep
-%autosetup -n herdr-app
+%setup -q -c -T
+%ifarch x86_64
+tar -xzf %{SOURCE0} --strip-components=1
+%endif
+%ifarch aarch64
+tar -xzf %{SOURCE1} --strip-components=1
+%endif
 
 %install
 install -D -m 0755 herdr-app %{buildroot}%{_bindir}/herdr-app
